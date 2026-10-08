@@ -4,11 +4,7 @@ from psycopg2.extras import execute_values
 
 CSV_FILE = "data/processed/marketlens_model_data.csv"
 
-DB_NAME = "marketlens"
-DB_USER = "postgres"
-DB_PASSWORD = input("Enter your PostgreSQL password: ")
-DB_HOST = "localhost"
-DB_PORT = "5432"
+NEON_CONNECTION_STRING = "postgresql://neondb_owner:npg_Mbg3BDQRrJ1q@ep-royal-fire-b4tvv3u0-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 
 print("\nReading CSV...")
 df = pd.read_csv(CSV_FILE)
@@ -17,15 +13,7 @@ print(f"Rows found: {len(df)}")
 print(f"Columns found: {len(df.columns)}")
 
 print("\nConnecting to PostgreSQL...")
-
-conn = psycopg2.connect(
-    dbname=DB_NAME,
-    user=DB_USER,
-    password=DB_PASSWORD,
-    host=DB_HOST,
-    port=DB_PORT
-)
-
+conn = psycopg2.connect(NEON_CONNECTION_STRING)
 cursor = conn.cursor()
 
 print("Connected successfully.")

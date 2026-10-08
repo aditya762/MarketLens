@@ -20,12 +20,8 @@ st.set_page_config(
 def load_data():
 
     conn = psycopg2.connect(
-        host=st.secrets["database"]["host"],
-        port=st.secrets["database"]["port"],
-        database=st.secrets["database"]["database"],
-        user=st.secrets["database"]["user"],
-        password=st.secrets["database"]["password"]
-    )
+    st.secrets["database"]["url"]
+)
 
     query = """
         SELECT
